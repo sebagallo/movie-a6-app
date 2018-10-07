@@ -1,0 +1,14 @@
+<div class="input-group input-group-lg">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <i class="fa fa-search fa"></i>
+    </div>
+  </div>
+  <input placeholder="Search Movie..." id="typeahead-basic" type="text" class="form-control" [(ngModel)]="selectedMovie" [ngbTypeahead]="search">
+  <select class="form-control" [(ngModel)]="selectedCategory">
+    <option value="">Select Category...</option>
+    <option *ngFor="let genre of moviesGenres" [value]="genre">
+      {{genre}}
+    </option>
+  </select>
+</div>

@@ -1,0 +1,16 @@
+<mdb-card class="movie-card hvr-grow">
+  <a routerLink="detail/{{movie.key}}" mdbWavesEffect>
+    <mdb-card-img class="movie-card__image" src="{{movieImagesPath + movie.img}}" alt="{{movie.key}}"></mdb-card-img>
+  </a>
+  <mdb-card-body>
+    <mdb-card-title><h4 class="text-truncate">{{movie.name}}</h4></mdb-card-title>
+    <mdb-card-text>
+      <small class="text-muted">
+        <span class="badge badge-secondary" *ngFor="let genre of movie.genres;">
+          {{genre}}
+        </span>
+      </small>
+    </mdb-card-text>
+    <a routerLink="detail/{{movie.key}}" class="btn btn-primary waves-light" mdbWavesEffect>Details</a>
+  </mdb-card-body>
+</mdb-card>
