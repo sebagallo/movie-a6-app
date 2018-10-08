@@ -3,14 +3,13 @@ import {MoviesService} from '../services/movies.service';
 import {SeoService} from '../../seo.service';
 import {CustomFilterPipe} from '../../custom-filter.pipe';
 
-import {Movie} from '../models/movie.interface';
 import {Observable} from 'rxjs';
 import {ExtendedMovie} from '../models/extended-movie.interface';
 
 @Component({
   selector: 'app-movie-list',
   templateUrl: './movie-list.component.html',
-  styleUrls: ['./movie-list.component.css']
+  styleUrls: ['./movie-list.component.scss']
 })
 export class MovieListComponent implements OnInit {
 
@@ -18,7 +17,7 @@ export class MovieListComponent implements OnInit {
 
   constructor(private moviesService: MoviesService,
               private seoService: SeoService,
-              private customFilter: CustomFilterPipe) {
+              public customFilter: CustomFilterPipe) {
   }
 
   ngOnInit() {
@@ -31,12 +30,9 @@ export class MovieListComponent implements OnInit {
   }
 
   public moviesFilter(movies: ExtendedMovie[]): boolean {
-    movies.forEach((movie, index) => {
-      if (true) {
-        movie.isVisible = true;
-      } else {
-        movie.isVisible = false;
-      }
+    movies.forEach((movie) => {
+      // TODO: Implement the actual filter
+      movie.isVisible = true;
     });
     return true;
   }

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {debounceTime, distinct, distinctUntilChanged, flatMap, map, tap} from 'rxjs/operators';
+import {debounceTime, distinct, distinctUntilChanged, flatMap, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {MoviesService} from '../services/movies.service';
 
 @Component({
   selector: 'app-movie-search',
   templateUrl: './movie-search.component.html',
-  styleUrls: ['./movie-search.component.css']
+  styleUrls: ['./movie-search.component.scss']
 })
 export class MovieSearchComponent implements OnInit {
   public selectedMovie: string;
@@ -35,6 +35,6 @@ export class MovieSearchComponent implements OnInit {
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term.length < 2 ? [] : this.moviesNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    );
+    )
 
 }
