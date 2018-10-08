@@ -1,19 +1,21 @@
-import {Component, OnInit} from '@angular/core';
-import {MoviesService} from '../../services/movies.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {switchMap, tap} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {Movie} from '../../models/movie.interface';
 import {MovieConfig} from '../../config/movie.config';
 import {SeoService} from '../../services/seo.service';
 import {Observable} from 'rxjs';
 import {ExtendedMovie} from '../../models/extended-movie.interface';
+import {select, Store} from '@ngrx/store';
+import * as fromMovies from '../../reducers';
+import * as MovieActions from '../../actions/movie.actions';
 
 @Component({
   selector: 'app-movie-detail',
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.scss']
 })
-export class MovieDetailComponent implements OnInit {
+export class MovieDetailComponent implements OnInit, OnDestroy {
 
   public movie$: Observable<Movie>;
   public movieImagesPath: string;
@@ -21,12 +23,12 @@ export class MovieDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private seo: SeoService,
-              private moviesService: MoviesService) {
+              private store: Store<fromMovies.State>) {
     this.movieImagesPath = MovieConfig.movieImagesPath;
   }
 
   ngOnInit() {
-    this.initByKey();
+    this.initById();
   }
 
   private setSeo(movie: ExtendedMovie): void {
@@ -35,11 +37,17 @@ export class MovieDetailComponent implements OnInit {
     this.seo.setKeywords(movie.genres);
   }
 
-  private initByKey(): void {
-    this.movie$ = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.moviesService.getMovieByKey(params.get('key'))),
+  private initById(): void {
+    this.route.paramMap.pipe(
+      map((params: ParamMap) => new MovieActions.Select(Number(params.get('id'))))
+    ).subscribe(this.store);
+    this.movie$ = this.store.pipe(
+      select(fromMovies.getSelectedMovie),
       tap(movie => this.setSeo(movie))
     );
+  }
+
+  ngOnDestroy() {
   }
 
 }

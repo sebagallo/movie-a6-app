@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MoviesService} from '../../services/movies.service';
 import {SeoService} from '../../services/seo.service';
 import {CustomFilterPipe} from '../../pipes/custom-filter.pipe';
 
+import { select, Store } from '@ngrx/store';
 import {Observable} from 'rxjs';
-import {ExtendedMovie} from '../../models/extended-movie.interface';
+import * as MovieActions from '../../actions/movie.actions';
+import * as fromMovies from '../../reducers';
+import {Movie} from '../../models/movie.interface';
 
 @Component({
   selector: 'app-movie-list',
@@ -13,28 +15,21 @@ import {ExtendedMovie} from '../../models/extended-movie.interface';
 })
 export class MovieListComponent implements OnInit {
 
-  public moviesList$: Observable<ExtendedMovie[]>;
+  public moviesList$: Observable<Movie[]>;
 
-  constructor(private moviesService: MoviesService,
+  constructor(private store: Store<fromMovies.State>,
               private seoService: SeoService,
               public customFilter: CustomFilterPipe) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new MovieActions.LoadAll());
     this.seoService.setDefaults();
     this.init();
   }
 
   private init(): void {
-    this.moviesList$ = this.moviesService.getMovies();
-  }
-
-  public moviesFilter(movies: ExtendedMovie[]): boolean {
-    movies.forEach((movie) => {
-      // TODO: Implement the actual filter
-      movie.isVisible = true;
-    });
-    return true;
+    this.moviesList$ = this.store.pipe(select(fromMovies.getAllMovies));
   }
 
 }

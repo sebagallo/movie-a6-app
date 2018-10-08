@@ -1,5 +1,5 @@
 <mdb-card class="movie-card hvr-grow">
-  <a routerLink="detail/{{movie.key}}" mdbWavesEffect>
+  <a routerLink="detail/{{movie.id}}/{{movie.key}}" mdbWavesEffect>
     <mdb-card-img class="movie-card__image" src="{{movieImagesPath + movie.img}}" alt="{{movie.key}}"></mdb-card-img>
   </a>
   <mdb-card-body>
@@ -11,6 +11,6 @@
         </span>
       </small>
     </mdb-card-text>
-    <a routerLink="detail/{{movie.key}}" class="btn btn-primary waves-light" mdbWavesEffect>Details</a>
+    <a routerLink="detail/{{movie.id}}/{{movie.key}}" class="btn btn-primary waves-light" mdbWavesEffect>Details</a>
   </mdb-card-body>
 </mdb-card>

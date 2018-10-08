@@ -26,6 +26,7 @@ import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {CustomFilterPipe} from './pipes/custom-filter.pipe';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {MovieEffects} from './effects/movie.effects';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
       name: 'Movies Test App',
       logOnly: environment.production,
     }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([MovieEffects]),
     DBModule.provideDB(schema)
   ],
   providers: [
