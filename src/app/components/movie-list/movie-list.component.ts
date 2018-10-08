@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MoviesService} from '../services/movies.service';
-import {SeoService} from '../../seo.service';
-import {CustomFilterPipe} from '../../custom-filter.pipe';
+import {MoviesService} from '../../services/movies.service';
+import {SeoService} from '../../services/seo.service';
+import {CustomFilterPipe} from '../../pipes/custom-filter.pipe';
 
 import {Observable} from 'rxjs';
-import {ExtendedMovie} from '../models/extended-movie.interface';
+import {ExtendedMovie} from '../../models/extended-movie.interface';
 
 @Component({
   selector: 'app-movie-list',

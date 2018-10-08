@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {Observable} from 'rxjs';
-import {filter, tap} from 'rxjs/operators';
+import {filter} from 'rxjs/operators';
 
 @Pipe({
   name: 'customFilter'

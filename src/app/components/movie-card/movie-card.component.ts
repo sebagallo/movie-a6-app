@@ -1,6 +1,6 @@
 import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {Movie} from '../models/movie.interface';
-import {MovieConfig} from '../config/movie.config';
+import {Movie} from '../../models/movie.interface';
+import {MovieConfig} from '../../config/movie.config';
 
 @Component({
   selector: 'app-movie-card',

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {debounceTime, distinct, distinctUntilChanged, flatMap, map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {MoviesService} from '../services/movies.service';
+import {MoviesService} from '../../services/movies.service';
 
 @Component({
   selector: 'app-movie-search',

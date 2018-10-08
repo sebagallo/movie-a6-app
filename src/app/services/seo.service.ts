@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Title, Meta} from '@angular/platform-browser';
-import {MovieConfig} from './movie/config/movie.config';
+import {MovieConfig} from '../config/movie.config';
 
 @Injectable({
   providedIn: 'root'

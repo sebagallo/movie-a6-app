@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {MoviesService} from '../services/movies.service';
+import {MoviesService} from '../../services/movies.service';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {switchMap, tap} from 'rxjs/operators';
-import {Movie} from '../models/movie.interface';
-import {MovieConfig} from '../config/movie.config';
-import {SeoService} from '../../seo.service';
+import {Movie} from '../../models/movie.interface';
+import {MovieConfig} from '../../config/movie.config';
+import {SeoService} from '../../services/seo.service';
 import {Observable} from 'rxjs';
-import {ExtendedMovie} from '../models/extended-movie.interface';
+import {ExtendedMovie} from '../../models/extended-movie.interface';
 
 @Component({
   selector: 'app-movie-detail',

@@ -12,20 +12,20 @@ import {DBModule} from '@ngrx/db';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {schema} from './db';
-import { reducers, metaReducers } from './reducers';
+import {reducers, metaReducers} from './reducers';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {environment} from '../environments/environment';
 
-import {MovieListComponent} from './movie/movie-list/movie-list.component';
-import {MovieCardComponent} from './movie/movie-card/movie-card.component';
-import {MovieDetailComponent} from './movie/movie-detail/movie-detail.component';
-import {MovieSearchComponent} from './movie/movie-search/movie-search.component';
-import {HeaderComponent} from './header/header.component';
-import {FooterComponent} from './footer/footer.component';
-import {CustomFilterPipe} from './custom-filter.pipe';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {MovieListComponent} from './components/movie-list/movie-list.component';
+import {MovieCardComponent} from './components/movie-card/movie-card.component';
+import {MovieDetailComponent} from './components/movie-detail/movie-detail.component';
+import {MovieSearchComponent} from './components/movie-search/movie-search.component';
+import {HeaderComponent} from './components/header/header.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {CustomFilterPipe} from './pipes/custom-filter.pipe';
+import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
     NgbModule,
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, {metaReducers}),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({
       name: 'Movies Test App',

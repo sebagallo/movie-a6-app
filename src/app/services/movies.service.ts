@@ -5,7 +5,7 @@ import {HttpClient} from '@angular/common/http';
 
 import {Movie} from '../models/movie.interface';
 import {MovieConfig} from '../config/movie.config';
-import {find, flatMap, map, publishReplay, refCount, tap} from 'rxjs/operators';
+import {find, flatMap, map, publishReplay, refCount} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

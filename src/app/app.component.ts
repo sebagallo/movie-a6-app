@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {SeoService} from './seo.service';
+import {SeoService} from './services/seo.service';
 import * as AOS from 'aos';
 
 @Component({
