@@ -35,14 +35,6 @@ export class MovieEffects {
           skip(1)
         );
 
-        if (query === undefined) {
-          return this.moviesService.getMovies().pipe(
-            takeUntil(nextSearch$),
-            map((movies: Movie[]) => new SearchComplete(movies)),
-            catchError(err => of(new SearchError(err)))
-          );
-        }
-
         return this.moviesService.getMovies().pipe(
           takeUntil(nextSearch$),
           map((movies: Movie[]) => new SearchComplete(movies.filter(
