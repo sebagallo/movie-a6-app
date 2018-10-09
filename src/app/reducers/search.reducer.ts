@@ -4,6 +4,7 @@ import {SearchQuery} from '../models/search-query.interface';
 export interface State {
   ids: number[];
   genres: string[];
+  titles: string[];
   loading: boolean;
   error: string;
   query: SearchQuery;
@@ -12,6 +13,7 @@ export interface State {
 const initialState: State = {
   ids: [],
   genres: [],
+  titles: [],
   loading: false,
   error: '',
   query: undefined,
@@ -27,7 +29,8 @@ export function reducer(state = initialState, action: MovieActionsUnion): State 
       return {
         ...state,
         loading: true,
-        error: ''
+        error: '',
+        query: action.payload
       };
     }
 
@@ -37,6 +40,7 @@ export function reducer(state = initialState, action: MovieActionsUnion): State 
         genres: action.payload
           .map(movie => movie.genres.join(',')).join(',').split(',')
           .filter((value, index, self) => self.indexOf(value) === index),
+        titles: action.payload.map(movie => movie.name),
         loading: false,
         error: '',
         query: state.query
@@ -60,6 +64,8 @@ export function reducer(state = initialState, action: MovieActionsUnion): State 
 export const getIds = (state: State) => state.ids;
 
 export const getGenres = (state: State) => state.genres;
+
+export const getTitles = (state: State) => state.titles;
 
 export const getQuery = (state: State) => state.query;
 

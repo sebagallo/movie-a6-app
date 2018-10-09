@@ -20,13 +20,11 @@ export class MovieSearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new MovieActions.LoadAll());
     this.moviesGenres$ = this.store.pipe(select(fromMovies.getSearchMovieGenres));
 
-    // TODO: Put this into the movies.reducer
-    this.store.pipe(select(fromMovies.getAllMovies),
-      flatMap(movies => movies),
-      map(movie => movie.name),
+    this.store.pipe(select(fromMovies.getSearchMovieTitles),
+      tap(() => this.moviesNames = []),
+      flatMap(names => names),
     ).subscribe(names => this.moviesNames.push(names));
   }
 
@@ -34,8 +32,8 @@ export class MovieSearchComponent implements OnInit {
     text$.pipe(
       debounceTime(50),
       distinctUntilChanged(),
-      tap(x => this.store.dispatch(new MovieActions.Search({genre: this.selectedCategory, name: x}))),
-      map(term => term.length < 2 ? [] : this.moviesNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+      tap(name => this.store.dispatch(new MovieActions.Search({genre: this.selectedCategory, name}))),
+      map(term => term.length < 1 ? [] : this.moviesNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
   onSelectedGenre = () => {
