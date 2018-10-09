@@ -5,9 +5,9 @@
     </div>
   </div>
   <input title="Search Movie" placeholder="Search Movie..." id="typeahead-basic" type="text" class="form-control" [(ngModel)]="selectedMovie" [ngbTypeahead]="search">
-  <select class="form-control" [(ngModel)]="selectedCategory" title="Select Category">
-    <option value="">Select Category...</option>
-    <option *ngFor="let genre of moviesGenres" [value]="genre">
+  <select class="form-control" [(ngModel)]="selectedCategory" (ngModelChange)="onSelectedGenre()" title="Select Category">
+    <option [ngValue]="undefined" selected>No Category Selected...</option>
+    <option *ngFor="let genre of moviesGenres$ | async" [value]="genre">
       {{genre}}
     </option>
   </select>

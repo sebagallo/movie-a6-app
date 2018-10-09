@@ -49,6 +49,10 @@ export const getSearchMovieIds = createSelector(
   getSearchState,
   fromSearch.getIds
 );
+export const getSearchMovieGenres = createSelector(
+  getSearchState,
+  fromSearch.getGenres
+);
 export const getSearchQuery = createSelector(
   getSearchState,
   fromSearch.getQuery

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Movie } from '../models/movie.interface';
+import {SearchQuery} from '../models/search-query.interface';
 
 export enum MovieActionTypes {
   Search = '[Movie] Search',
@@ -15,7 +16,7 @@ export enum MovieActionTypes {
 export class Search implements Action {
   readonly type = MovieActionTypes.Search;
 
-  constructor(public payload: string) {}
+  constructor(public payload: SearchQuery) {}
 }
 
 export class SearchComplete implements Action {

@@ -5,7 +5,6 @@ import {Movie} from '../../models/movie.interface';
 import {MovieConfig} from '../../config/movie.config';
 import {SeoService} from '../../services/seo.service';
 import {Observable} from 'rxjs';
-import {ExtendedMovie} from '../../models/extended-movie.interface';
 import {select, Store} from '@ngrx/store';
 import * as fromMovies from '../../reducers';
 import * as MovieActions from '../../actions/movie.actions';
@@ -31,7 +30,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     this.initById();
   }
 
-  private setSeo(movie: ExtendedMovie): void {
+  private setSeo(movie: Movie): void {
     this.seo.setTitle(movie.name);
     this.seo.setDescription(movie.description);
     this.seo.setKeywords(movie.genres);

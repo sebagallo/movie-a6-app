@@ -24,7 +24,6 @@ import {MovieDetailComponent} from './components/movie-detail/movie-detail.compo
 import {MovieSearchComponent} from './components/movie-search/movie-search.component';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {CustomFilterPipe} from './pipes/custom-filter.pipe';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {MovieEffects} from './effects/movie.effects';
 
@@ -37,7 +36,6 @@ import {MovieEffects} from './effects/movie.effects';
     MovieSearchComponent,
     HeaderComponent,
     FooterComponent,
-    CustomFilterPipe,
     PageNotFoundComponent
   ],
   imports: [
@@ -57,7 +55,6 @@ import {MovieEffects} from './effects/movie.effects';
     DBModule.provideDB(schema)
   ],
   providers: [
-    CustomFilterPipe
   ],
   bootstrap: [AppComponent]
 })

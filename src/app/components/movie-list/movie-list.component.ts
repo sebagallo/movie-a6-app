@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SeoService} from '../../services/seo.service';
-import {CustomFilterPipe} from '../../pipes/custom-filter.pipe';
 
 import { select, Store } from '@ngrx/store';
 import {Observable} from 'rxjs';
@@ -18,18 +17,17 @@ export class MovieListComponent implements OnInit {
   public moviesList$: Observable<Movie[]>;
 
   constructor(private store: Store<fromMovies.State>,
-              private seoService: SeoService,
-              public customFilter: CustomFilterPipe) {
+              private seoService: SeoService) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new MovieActions.LoadAll());
+    this.store.dispatch(new MovieActions.Search({name: null, genre: null}));
     this.seoService.setDefaults();
     this.init();
   }
 
   private init(): void {
-    this.moviesList$ = this.store.pipe(select(fromMovies.getAllMovies));
+    this.moviesList$ = this.store.pipe(select(fromMovies.getSearchResults));
   }
 
 }

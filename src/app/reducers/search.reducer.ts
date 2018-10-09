@@ -1,47 +1,45 @@
 import { MovieActionTypes, MovieActionsUnion } from '../actions/movie.actions';
+import {SearchQuery} from '../models/search-query.interface';
 
 export interface State {
   ids: number[];
+  genres: string[];
   loading: boolean;
   error: string;
-  query: string;
+  query: SearchQuery;
 }
 
 const initialState: State = {
   ids: [],
+  genres: [],
   loading: false,
   error: '',
-  query: '',
+  query: undefined,
 };
 
 export function reducer(state = initialState, action: MovieActionsUnion): State {
   switch (action.type) {
     case MovieActionTypes.Search: {
-      const query = action.payload;
-
-      if (query === '') {
-        return {
-          ids: [],
-          loading: false,
-          error: '',
-          query,
-        };
+      if (action.payload === undefined) {
+        return initialState;
       }
 
       return {
         ...state,
         loading: true,
-        error: '',
-        query,
+        error: ''
       };
     }
 
     case MovieActionTypes.SearchComplete: {
       return {
         ids: action.payload.map(movie => movie.id),
+        genres: action.payload
+          .map(movie => movie.genres.join(',')).join(',').split(',')
+          .filter((value, index, self) => self.indexOf(value) === index),
         loading: false,
         error: '',
-        query: state.query,
+        query: state.query
       };
     }
 
@@ -60,6 +58,8 @@ export function reducer(state = initialState, action: MovieActionsUnion): State 
 }
 
 export const getIds = (state: State) => state.ids;
+
+export const getGenres = (state: State) => state.genres;
 
 export const getQuery = (state: State) => state.query;
 

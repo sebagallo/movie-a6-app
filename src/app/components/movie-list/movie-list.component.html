@@ -11,4 +11,9 @@
     <app-movie-card [movie]="movie"></app-movie-card>
     <div class="mb-3"></div>
   </div>
+  <div class="col" *ngIf="(moviesList$ | async)?.length===0">
+    <div class="alert alert-danger">
+      No Results Found
+    </div>
+  </div>
 </div>
