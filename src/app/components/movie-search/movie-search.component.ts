@@ -37,7 +37,6 @@ export class MovieSearchComponent implements OnInit {
     )
 
   onSelectedGenre = () => {
-    console.log(this.selectedCategory);
     this.store.dispatch(new MovieActions.Search({genre: this.selectedCategory, name: this.selectedMovie}));
   }
 
